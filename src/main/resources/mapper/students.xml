@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqh.manytab.mapper.StudentMapper">
+    <resultMap id="stu_cor" type="stu">
+        <id column="stuid" property="stuid"></id>
+        <result column="stuname" property="stuname"></result>
+        <collection property="course" ofType="cor">
+            <id column="corid" property="corid"></id>
+            <result column="corname" property="corname"></result>
+        </collection>
+    </resultMap>
+    <select id="findById" parameterType="int" resultMap="stu_cor">
+        select s.*,c.corid,c.corname from students s left join student_course sc on s.stuid = sc.stuid left join courses c on sc.corid = c.corid
+        where s.stuid=#{stuid}
+    </select>
+    <insert id="addStu" parameterType="stu" useGeneratedKeys="true" keyProperty="stuid">
+        insert into students(stuname) values(#{stuname})
+    </insert>
+    <delete id="delStu" parameterType="int">
+       delete from students where stuid=#{stuid}
+    </delete>
+    <update id="modStu" parameterType="stu">
+        update students
+        <set>
+            <if test="corid!=0">
+                corid=#{corid},
+            </if>
+            <if test="stuname!=null">
+                stuname=#{stuname},
+            </if>
+        </set>
+        where stuid=#{stuid}
+    </update>
+</mapper>

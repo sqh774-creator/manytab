@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqh.manytab.mapper.Stu_CorMapper">
+    <insert id="addStuAndCor" parameterType="map">
+        insert into student_course values(#{stuid},#{corid})
+    </insert>
+    <delete id="delStu" parameterType="int">
+        delete from student_course where stuid=#{stuid}
+    </delete>
+    <delete id="delCor" parameterType="int">
+        delete from student_course where corid=#{corid}
+    </delete>
+    <update id="modStu" parameterType="map">
+        update student_course set corid=#{newcorid} where stuid=#{stuid} and corid=#{oldcorid}
+    </update>
+    <delete id="delSingleCorseByStu" parameterType="map">
+        delete from student_course where stuid=#{stuid} and corid=#{corid}
+    </delete>
+</mapper>

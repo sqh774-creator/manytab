@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias type="com.sqh.manytab.entity.Course" alias="cor"></typeAlias>
+        <typeAlias type="com.sqh.manytab.entity.Student" alias="stu"></typeAlias>
+        <typeAlias type="com.sqh.manytab.entity.Student_Course" alias="sc"></typeAlias>
+    </typeAliases>
+</configuration>
